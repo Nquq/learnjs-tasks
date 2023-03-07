@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<div class="clock">
+		<span class="hour" style="color:red">hh</span>
+		<span class="minute" style="color:green">mm</span>
+		<span class="second" style="color:blue">ss</span>
+		<br>
+		<button class="start">Start</button>
+		<button class="stop">Stop</button>
+	</div>
+	<script>
+		function clock() {
+			let clock = document.querySelector('.clock')
+			let date = new Date()
+
+			let hours = date.getHours()
+			if (hours < 10) hours = `0${hours}`
+			clock.children[0].innerHTML = hours
+
+			let minutes = date.getMinutes()
+			if (minutes < 10) minutes = `0${minutes}`
+			clock.children[1].innerHTML = minutes
+
+			let seconds = date.getSeconds()
+			if (seconds < 10) seconds = `0${seconds}`
+			clock.children[2].innerHTML = seconds
+		}
+
+		let timer
+		let startButton = document.querySelector('.start')
+		startButton.addEventListener('click', () => {
+			clock()
+			timer = setInterval(clock, 1000)
+		})
+
+		let stopButton = document.querySelector('.stop')
+		stopButton.addEventListener('click', () => {
+			clearInterval(timer)
+		})
+	</script>
+</body>
+
+</html>

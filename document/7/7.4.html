@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<h1>Создать список</h1>
+	<script>
+		const list = document.createElement('ul')
+		document.body.append(list)
+		let flag = true
+		do {
+			let value = prompt('введите название')
+
+			let li = document.createElement('li')
+			li.textContent = value
+			list.append(li)
+
+			if (!value || value === '') {
+				list.lastElementChild.remove()
+				flag = false
+			}
+		} while (flag);
+	</script>
+</body>
+
+</html>
