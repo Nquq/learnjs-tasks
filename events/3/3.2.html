@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<style>
+		.list {
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+
+	<ul class="tree" id="tree">
+		<li><span class="list">Животные</span>
+			<ul>
+				<li><span class="list">Млекопитающие</span>
+					<ul>
+						<li>Коровы</li>
+						<li>Ослы</li>
+						<li>Собаки</li>
+						<li>Тигры</li>
+					</ul>
+				</li>
+				<li><span class="list">Другие</span>
+					<ul>
+						<li>Змеи</li>
+						<li>Птицы</li>
+						<li>Ящерицы</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li><span class="list">Рыбы</span>
+			<ul>
+				<li><span class="list">Аквариумные</span>
+					<ul>
+						<li>Гуппи</li>
+						<li>Скалярии</li>
+					</ul>
+				</li>
+				<li><span class="list">Морские</span>
+					<ul>
+						<li>Морская форель</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<script>
+		tree.onclick = event => {
+			if (event.target.className != 'list') return
+
+			let list = event.target.parentNode.querySelector('ul')
+			if (!list) return
+
+			list.hidden = !list.hidden
+		}
+	</script>
+</body>
+
+</html>

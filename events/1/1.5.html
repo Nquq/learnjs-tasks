@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+</head>
+
+<body>
+
+	<span class="first">▶ Сладости (нажми меня)!</span>
+	<span class="second">▼ Сладости (нажми меня)!</span>
+
+	<ul>
+		<li>Пирожное</li>
+		<li>Пончик</li>
+		<li>Мёд</li>
+	</ul>
+
+	<script>
+		let arrowFirst = document.querySelector('.first')
+		let arrowSecond = document.querySelector('.second')
+		let ul = document.querySelector('ul')
+
+		arrowFirst.style.cursor = 'pointer'
+		arrowSecond.hidden = true
+		ul.hidden = true
+
+		arrowFirst.addEventListener('click', () => {
+			arrowFirst.hidden = true
+			arrowSecond.hidden = false
+			ul.hidden = false
+		})
+		arrowSecond.addEventListener('click', () => {
+			arrowFirst.hidden = false
+			arrowSecond.hidden = true
+			ul.hidden = true
+		})
+	</script>
+</body>
+
+</html>
