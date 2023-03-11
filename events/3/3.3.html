@@ -58,7 +58,7 @@
 	</table>
 
 	<script>
-		grid.onclick = event => {
+		grid.addEventListener('click', (event) => {
 			if (event.target.tagName != 'TH') return
 
 			let th = event.target
@@ -82,9 +82,8 @@
 			}
 
 			rowsArr.sort(compare)
-
 			tbody.append(...rowsArr)
-		}
+		}) 
 	</script>
 
 </body>

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="2.2.css">
+</head>
+
+<body>
+	<p>Кликните на ячейку таблицы, чтобы отредактировать её. Нажмите ОК или ОТМЕНА, когда закончите.</p>
+	<table id="bagua-table">
+		<tr>
+			<th colspan="3">Квадрат <em>Bagua</em>: Направление, Элемент, Цвет, Значение</th>
+		</tr>
+		<tr>
+			<td class="nw"><strong>Северо-Запад</strong>
+				<br>Металл
+				<br>Серебро
+				<br>Старейшины
+			</td>
+			<td class="n"><strong>Север</strong>
+				<br>Вода
+				<br>Синий
+				<br>Перемены
+			</td>
+			<td class="ne"><strong>Северо-Восток</strong>
+				<br>Земля
+				<br>Жёлтый
+				<br>Направление
+			</td>
+		</tr>
+		<tr>
+			<td class="w"><strong>Запад</strong>
+				<br>Металл
+				<br>Золото
+				<br>Молодость
+			</td>
+			<td class="c"><strong>Центр</strong>
+				<br>Всё
+				<br>Пурпурный
+				<br>Гармония
+			</td>
+			<td class="e"><strong>Восток</strong>
+				<br>Дерево
+				<br>Синий
+				<br>Будущее
+			</td>
+		</tr>
+		<tr>
+			<td class="sw"><strong>Юго-Запад</strong>
+				<br>Земля
+				<br>Коричневый
+				<br>Спокойствие
+			</td>
+			<td class="s"><strong>Юг</strong>
+				<br>Огонь
+				<br>Оранжевый
+				<br>Слава
+			</td>
+			<td class="se"><strong>Юго-Восток</strong>
+				<br>Дерево
+				<br>Зеленый
+				<br>Роман
+			</td>
+		</tr>
+	</table>
+
+
+	<script>
+		let table = document.getElementById('bagua-table')
+		let textareaElement
+
+		table.addEventListener('click', (event) => {
+			if (textareaElement) return
+
+			textareaElement = document.createElement('textarea')
+			textareaElement.classList.add("edit")
+
+			let buttonOk = document.createElement('button')
+			buttonOk.classList.add("ok")
+			buttonOk.innerHTML = 'OK'
+
+			let buttonCancel = document.createElement('button')
+			buttonCancel.classList.add("cancel")
+			buttonCancel.innerHTML = 'Отмена'
+
+			let td = event.target.closest('TD')
+
+			textareaElement.value = td.innerHTML
+			textareaElement.style.width = `${td.clientWidth}px`
+			textareaElement.style.height = `${td.clientHeight}px`
+			td.replaceWith(textareaElement)
+			textareaElement.focus()
+
+			document.body.append(buttonOk)
+
+			let bottom = textareaElement.getBoundingClientRect().bottom - 1
+			let left = textareaElement.getBoundingClientRect().left + textareaElement.clientWidth / 2 - buttonOk.clientWidth
+
+			buttonOk.style.top = `${bottom}px`
+			buttonOk.style.left = `${left}px`
+
+			document.body.append(buttonCancel)
+
+			let top = textareaElement.getBoundingClientRect().bottom - 1
+			let right = buttonOk.getBoundingClientRect().right
+
+			buttonCancel.style.top = `${top}px`
+			buttonCancel.style.left = `${right}px`
+
+			buttonOk.addEventListener('click', () => {
+				td.innerHTML = textareaElement.value
+				textareaElement.replaceWith(td)
+				textareaElement = null
+				buttonOk.remove()
+				buttonCancel.remove()
+			})
+
+			buttonCancel.onclick = () => {
+				textareaElement.replaceWith(td)
+				textareaElement = null
+				buttonOk.remove()
+				buttonCancel.remove()
+			}
+		});
+	</script>
+
+</body>
+
+</html>
